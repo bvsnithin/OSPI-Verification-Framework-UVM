@@ -1,5 +1,5 @@
 # OSPI-Verification-Framework-UVM
-UVM-based verification framework for OSPI interfaces in SoC designs. 
+UVM-based verification framework for OSPI controller in SoC designs. 
 
 ## 1. Introduction
 Serial Peripheral Interface (SPI) is a widely used synchronous serial communication protocol for short-distance, high-speed communication between a master and one or more slave devices. SPI is simple, fast, and flexible, but its data bandwidth is limited by its single-bit data path.
