@@ -23,7 +23,7 @@ class ospi_agent extends uvm_agent;
       drv = ospi_driver::type_id::create("drv", this);
       sqr = ospi_sequencer::type_id::create("sqr", this);
     end
-  end
+  endfunction
 
   // Connect Phase: Hook things together
   function void connect_phase(uvm_phase phase);
@@ -32,6 +32,6 @@ class ospi_agent extends uvm_agent;
       drv.seq_item_port.connect(sqr.seq_item_export);
       
     end
-  end
+  endfunction
 
 endclass

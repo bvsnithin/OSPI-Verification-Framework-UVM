@@ -12,7 +12,7 @@ class ospi_test extends uvm_test;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     m_env = ospi_env::type_id::create("m_env", this);
-  end
+  endfunction
 
   task run_phase(uvm_phase phase);
     // 1. Create the sequence
@@ -21,7 +21,7 @@ class ospi_test extends uvm_test;
     // 2. Raise an Objection (Stop the simulator from quitting immediately)
     phase.raise_objection(this);
 
-    c
+    m_seq.start(m_env.m_agent.sqr);
     
     // 3. Drop Objection (Allow simulation to finish)
     phase.drop_objection(this);

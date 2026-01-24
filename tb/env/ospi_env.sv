@@ -14,7 +14,7 @@ class ospi_env extends uvm_env;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     
-    m_agent = ospi_agent::type_id::create("m_agent",this)
-  end
+    m_agent = ospi_agent::type_id::create("m_agent",this);
+  endfunction
 
 endclass

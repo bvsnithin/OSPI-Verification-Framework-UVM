@@ -15,7 +15,7 @@ class ospi_driver extends uvm_driver #(ospi_seq_item);
     if (!uvm_config_db#(virtual ospi_if)::get(this, "", "vif", vif)) begin
       `uvm_fatal("DRIVER", "Could not get vif from config db")
     end
-  end
+  endfunction
 
   // Run Phase: The main loop
   task run_phase(uvm_phase phase);

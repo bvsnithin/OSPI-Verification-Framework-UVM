@@ -1,8 +1,6 @@
-
 module top;
   import uvm_pkg::*;
   import ospi_pkg::*;
-  `include "uvm_macros.svh"
 
   // 1. Clock and Reset Generation
   logic clk;

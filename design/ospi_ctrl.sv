@@ -8,6 +8,10 @@ module ospi_ctrl (
     input  logic       sclk,
     inout  wire [7:0]  dq,
     inout  wire        dqs
+);
+    logic [7:0] mem [0:255];
+    logic [7:0] data_out;
+    logic       drive_bus;
 
     // Tri-state buffer for the Bidirectional DQ bus
     assign dq = drive_bus ? data_out : 8'bz;
@@ -23,6 +27,6 @@ module ospi_ctrl (
         // For now, we leave it passive to ensure the testbench compiles.
         end
     end
-);
+
 
 endmodule: ospi_ctrl

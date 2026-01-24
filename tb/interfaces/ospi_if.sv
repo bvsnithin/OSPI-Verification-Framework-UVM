@@ -3,8 +3,8 @@ interface ospi_if (input logic clk, input logic rst_n);
     //OSPI Physical Signals
     logic      cs_n;  // Chip Select (Active low)
     logic      sclk;  // Serial Clock
-    logic      dqs;   // Data Strobe (for high speed data capture)
-    logic[7:0] dq;    // Bidirectional Data Bus (Octal == 8 lines)
+    wire       dqs;   // Data Strobe (for high speed data capture)
+    wire[7:0] dq;    // Bidirectional Data Bus (Octal == 8 lines)
 
     // Clocking block for the Driver (drives inputs to DUT)
     // We use clocking blocks to avoid race conditions in simulation
