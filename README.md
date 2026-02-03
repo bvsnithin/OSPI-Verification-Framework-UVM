@@ -50,3 +50,34 @@ Despite its higher speed and complexity, OSPI:
 Does not introduce device addressing
 Continues to use chip select for device selection
 Follows a command → address → data transaction model
+
+## 🚀 How to Run the Project
+
+### For Texas A&M Students
+
+If you are a **Texas A&M student** with access to the ECEN Linux servers, follow these steps:
+
+1. **Clone the repository** on the ECEN Linux server:
+   ```bash
+   git clone <repository-url>
+   cd OSPI-Verification-Framework-UVM
+   ```
+
+2. **Load the CSCE-616 environment**:
+   ```bash
+   load-csce-616
+   ```
+   This command sets up all necessary EDA tools, compilers, and simulators for the project.
+
+3. **Run the setup script**:
+   ```bash
+   bash setupX.bash
+   ```
+   This script configures the environment and prepares the project for simulation.
+
+4. **Navigate to the simulation directory and run the testbench**:
+   ```bash
+   cd sim
+   xrun -f run.f
+   ```
+   This command compiles and runs the complete verification environment using the xrun simulator.

@@ -12,6 +12,7 @@ package ospi_pkg;
   `include "agents/ospi_agent.sv"
 
   // 3. ENVIRONMENT (depends on agent)
+  `include "env/ospi_scoreboard.sv"
   `include "env/ospi_env.sv"
 
   // 4. SEQUENCES (depend on seq_item)

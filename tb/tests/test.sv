@@ -27,4 +27,10 @@ class ospi_test extends uvm_test;
     phase.drop_objection(this);
   endtask
 
+
+
+  function void end_of_elaboration_phase(uvm_phase phase);
+    uvm_top.print_topology();
+  endfunction
+
 endclass

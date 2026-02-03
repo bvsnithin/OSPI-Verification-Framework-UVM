@@ -17,9 +17,44 @@ class ospi_monitor extends uvm_monitor;
 
   task run_phase(uvm_phase phase);
     ospi_seq_item item;
+    logic [7:0] captured_data[$];
+    logic [7:0] cmd;
+    
     forever begin
-      @(posedge vif.sclk); // Simple clock wait to satisfy syntax
-      // Monitor logic here
+      // 1. Wait for Start of Transaction (CS_N goes low)
+      @(vif.mon_cb iff vif.mon_cb.cs_n == 0);
+      
+      item = ospi_seq_item::type_id::create("item");
+      
+      // 2. Wait for Command Phase (DUT is in CMD state on next cycle)
+      @(vif.mon_cb);
+      cmd = vif.mon_cb.dq;
+      item.is_write = (cmd == 8'h02);
+      
+      // 3. Sample Address (4 bytes - DUT is in ADDR state)
+      repeat(4) begin
+         @(vif.mon_cb);
+         item.addr = {item.addr[23:0], vif.mon_cb.dq};
+      end
+      
+      // 4. Sample Data Phase
+      captured_data.delete();
+      
+      forever begin
+          @(vif.mon_cb);
+          if (vif.mon_cb.cs_n == 1) break; // Transaction Ended
+          captured_data.push_back(vif.mon_cb.dq);
+      end
+
+      
+      // Copy data to item
+      item.data = new[captured_data.size()];
+      foreach(captured_data[i]) item.data[i] = captured_data[i];
+      
+      // Publish
+      item_collected_port.write(item);
+      `uvm_info("MON", $sformatf("Captured Transaction: Type=%s Addr=0x%0h Size=%0d", 
+                item.is_write ? "WRITE" : "READ", item.addr, item.data.size()), UVM_LOW)
     end
   endtask
 

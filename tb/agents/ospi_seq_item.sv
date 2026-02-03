@@ -1,7 +1,7 @@
 class ospi_seq_item extends uvm_sequence_item;
   
   rand bit [31:0] addr;
-  rand bit [31:0] data[];
+  rand bit [7:0] data[];  // 8-bit data to match OSPI bus width
   rand bit        is_write;
 
   `uvm_object_utils_begin(ospi_seq_item)
